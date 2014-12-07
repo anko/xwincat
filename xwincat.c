@@ -16,9 +16,11 @@ int printUsage() {
     printf("\
 USAGE: xwincat [-display <display>] [-time]\n\
     display  target X display      (default %s)\n\
-    time     also print timestamps (default %s)\n",
+    time     also print timestamps (default %s)\n\
+    popups   also print popups     (default %s)\n",
         DEFAULT_DISPLAY,
-        (DEFAULT_PRINT_TIME ? "yes" : "no") );
+        (DEFAULT_PRINT_TIME   ? "yes" : "no"),
+        (DEFAULT_PRINT_POPUPS ? "yes" : "no") );
     exit(0);
 }
 
