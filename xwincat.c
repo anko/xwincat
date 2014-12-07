@@ -8,8 +8,9 @@
 #include <stdbool.h>
 #include <time.h>
 
-const char * DEFAULT_DISPLAY    = ":0";
-const char * DEFAULT_PRINT_TIME = false;
+const char * DEFAULT_DISPLAY      = ":0";
+const char * DEFAULT_PRINT_TIME   = false;
+const char * DEFAULT_PRINT_POPUPS = false;
 
 int printUsage() {
     printf("\
@@ -25,12 +26,14 @@ int main(int argc, char * argv[]) {
 
     const char * hostname    = DEFAULT_DISPLAY;
     bool         printTimes  = DEFAULT_PRINT_TIME;
+    bool         printPopups = DEFAULT_PRINT_POPUPS;
 
     // Get arguments
     for (int i = 1; i < argc; i++) {
         if      (!strcmp(argv[i], "-help"))     printUsage();
         else if (!strcmp(argv[i], "-display"))  hostname    = argv[++i];
         else if (!strcmp(argv[i], "-time"))     printTimes  = true;
+        else if (!strcmp(argv[i], "-popups"))   printPopups = true;
         else { printf("Unexpected argument `%s`\n", argv[i]); printUsage(); }
     }
 
@@ -70,6 +73,10 @@ int main(int argc, char * argv[]) {
 
                 xcb_configure_notify_event_t * e =
                     (xcb_configure_notify_event_t *)ev;
+
+                // Ignore popup windows (with override_redirect set) unless
+                // explicitly requested.
+                if (e->override_redirect && !printPopups) break;
 
                 printf("window %d %d %d %d %d",
                         e->window,
