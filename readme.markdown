@@ -17,6 +17,9 @@ represent the dimensions of the first screen it encountered.
 Then, whenever a window changes position or size, it sends `window <window_id>
 <x> <y> <width> <height>`.
 
+Popup windows (with the `override_redirect`-flag set) are ignored by default,
+but can be enabled if you want them with the `-popups` flag.
+
 If you passed `-time`, an epoch timestamp is additionally printed at the end of
 `window` lines.
 
@@ -32,6 +35,7 @@ Flags you can pass (all optional):
 
  - `-display <display>`: set target X display (default `:0`)
  - `-time`: also append epoch timestamps (default: don't)
+ - `-popup`: also print popup window changes (default: don't)
  - `-help`: print usage hints and exit
 
 Interrupt signal (`C-c`) to end.
