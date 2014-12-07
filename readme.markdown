@@ -11,11 +11,19 @@ Nice for drawing some sort of composited overlay, or for fun statistics.
 
 ## Format
 
-On startup, `xwincat` prints `screen <width> <height>` where the numbers
-represent the dimensions of the first screen it encountered.
+On startup, `xwincat` prints a line
 
-Then, whenever a window changes position or size, it sends `window <window_id>
-<x> <y> <width> <height>`.
+    screen <width> <height>
+
+where the integers `<width>` and `<height>` represent the dimensions of the
+first screen it found.
+
+Whenever a window changes position or size, it prints a line
+
+    window <window_id> <x> <y> <width> <height>
+
+where the fields are again pretty self-explanitory.  The (x,y) position is from
+top-left of the screen.
 
 Popup windows (with the `override_redirect`-flag set) are ignored by default,
 but can be enabled if you want them with the `-popups` flag.
