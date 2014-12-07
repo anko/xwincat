@@ -1,4 +1,4 @@
-// xwinbcat: Log X11 window positions
+// xwincat: Log X11 window positions
 
 #include <xcb/xcb.h>
 
@@ -13,7 +13,7 @@ const char * DEFAULT_PRINT_TIME = false;
 
 int printUsage() {
     printf("\
-USAGE: xkbcat [-display <display>] [-time]\n\
+USAGE: xwincat [-display <display>] [-time]\n\
     display  target X display      (default %s)\n\
     time     also print timestamps (default %s)\n",
         DEFAULT_DISPLAY,
